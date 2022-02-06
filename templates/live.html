@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block content %}
+    <div><a href="{{ url_for('index') }}" class="btn btn-warning home">Create new life</a></div>
+    <div class="counter">{{ counter }}</div>
+    {% block app_content %}
+        <table class="world">
+            {% for i in range(new_generation|length) %}
+                <tr>
+                    {% for j in range(new_generation[0]|length) %}
+                        {% if new_generation[i][j] == 1 %}
+                            <td class="cell living-cell"></td>
+                        {% elif new_generation[i][j] == 0 and old_generation[i][j] == 1 %}
+                            <td class="cell dead-cell"></td>
+                        {% else %}
+                            <td class="cell"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+    <table class="legend">
+        <tr>
+            <td class="cell living-cell">Living cell</td>
+            <td class="cell dead-cell">Recently died cell</td>
+            <td class="cell">Dead cell</td>
+        </tr>
+    </table>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>setInterval(() => window.location.reload(), 1000)</script>
+{% endblock %}

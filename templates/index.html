@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block app_content %}
+    <p>Welcome to the game called 'Life'! You can do nothing, but observe.<br>The rules are simple - the colony dies
+        if there are no green cells left or the new generation is the same as the old generation</p>
+    <p>You can create the world with default settings by clicking "Create life".</p>
+    <a class="btn btn-primary" href="{{ url_for('live') }}">Create life</a>
+    <p>Or you can choose how big your world will be:</p>
+    <form action="{{ url_for('index') }}" method="post">
+        <p><label>Enter width:</label><label>
+            <input type="number" value="25" max="120" name="width"/>
+        </label>
+        <p><label>Then enter height:</label><label>
+            <input type="number" value="25" max="50" name="height"/>
+        </label>
+        <p>Confirm settings:</p>
+        <p><input type="submit" value="Set values" class="btn btn-primary"/>
+    </form>
+    <p>And finally:</p>
+    <a class="btn btn-primary" href="{{ url_for('live') }}">Create life</a>
+{% endblock %}

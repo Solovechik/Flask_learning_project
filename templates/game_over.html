@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block app_content %}
+    <p>Life ended!</p>
+    <p>Do you want to take another try?</p>
+    <a class="btn btn-primary" href="{{ url_for('index') }}">Create life</a>
+{% endblock %}
