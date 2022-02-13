@@ -17,20 +17,16 @@ def index():
 
 @app.route('/live')
 def live():
-    cnt = GameOfLife()
-    cnt = cnt.counter
+    cnt = GameOfLife().counter
+    new_generation = GameOfLife()
     if cnt > 0:
-        new_generation = GameOfLife()
         new_generation.form_new_generation()
         new_generation = new_generation.world
     else:
-        new_generation = GameOfLife()
         new_generation.generate_universe()
         new_generation = new_generation.world
-    old_generation = GameOfLife()
-    old_generation = old_generation.old_world
-    alive_cells = GameOfLife()
-    alive_cells = alive_cells.alive_cells
+    old_generation = GameOfLife().old_world
+    alive_cells = GameOfLife().alive_cells
     if cnt > 1 and old_generation == new_generation or alive_cells == 0:
         return render_template('game_over.html', title='Game Over!')
     return render_template('live.html', new_generation=new_generation, counter=cnt, old_generation=old_generation, title='Game "LIFE"')
